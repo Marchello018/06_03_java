@@ -26,5 +26,7 @@ jobs:
 
       - name: Build & Deploy
         run: mvn -B deploy
+        working-directory: ${{ github.workspace }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
