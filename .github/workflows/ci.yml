@@ -24,7 +24,10 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Build & Deploy
-        run: mvn -B deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Show Working Directory
+        run: |
+          echo "CURRENT DIR: $(pwd)"
+          echo "Listing contents:"
+          ls -la
+          echo "Trying to locate pom.xml:"
+          find . -name "pom.xml"
