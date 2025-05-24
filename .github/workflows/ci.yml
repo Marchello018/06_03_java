@@ -14,20 +14,15 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
-        with:
-          path: .  # 👈 ключевая строка
+        uses: actions/checkout@v4
 
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
 
-      - name: Show Working Directory
-        run: |
-          echo "CURRENT DIR: $(pwd)"
-          echo "Listing contents:"
-          ls -la
-          echo "Trying to locate pom.xml:"
-          find . -name "pom.xml"
+      - name: Deploy to GitHub Packages
+        run: mvn -B deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
